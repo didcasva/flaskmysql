@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% block body %}
+<h1>Dashboard <small> Welcome {{session.username}} </small> </h1>
+<a class="btn btn-success" href="/add_arlcle">Add Arlcle</a>
+<hr>
+<table class="table table-striped">
+   <tr>
+     <th>ID</th>
+     <th>Title</th>
+     <th>Author</th>
+     <th>Date</th>
+     <th></th>
+     <th></th>
+   </tr>
+
+{% for arlcle in arlcles %}
+   <tr>
+   <td>{{arlcle.id}}</td> <!-- id -->
+   <td>{{arlcle.ltle}}</td> <!-- ltle -->
+   <td>{{arlcle.author}}</td> <!-- author -->
+   <td>{{arlcle.create_date}}</td> <!-- create_date -->
+   <td><a href="edit_arlcle/{{arlcle.id}}" class="btn btn-default pull-right">Edit</a>
+   <td>
+     <form aclon="{{url_for('delete_arlcle', id=arlcle.id)}}" method="post">
+        <input type="hidden" name="_method" value="DELETE">
+        <input type="submit" name="" value="Delete" class="btn btn-danger">
+</form></td><td></td></tr>
+{% endfor %}
+</table> {% endblock %}
